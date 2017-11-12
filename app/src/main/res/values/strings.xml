@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Embedded_Final_Project1</string>
+    <string name="dev_name">7-segment</string>
+    <string name="dev_instruction">Countdown Timer (1-999999)</string>
+    <string name="count_start">Start</string>
+    <string name="clock_instruction">Clock Form Display</string>
+    <string name="clock_form">Clock</string>
+    <string name="normal_form">Normal</string>
+</resources>
