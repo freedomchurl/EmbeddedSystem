@@ -9,6 +9,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 /**
@@ -51,8 +53,7 @@ public class DrawView extends View
     @Override
     public void onDraw(Canvas canvas) {
 
-        super.onDraw(canvas);
-
+        canvas.drawBitmap(image1,0,0,null);
 
         int w = image2.getWidth();
         int h = image2.getHeight();
@@ -66,10 +67,32 @@ public class DrawView extends View
         dst = new Rect(400, 1200, 400 + w / 2, 1200 + h / 2);
         canvas.drawBitmap(image3, null, dst, null);
 
-
+        super.onDraw(canvas);
 
 
 
 
     }
+    /*@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.animation_canvas_test, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public View getMenuInflater() {
+        return menuInflater;
+    }*/
 }
