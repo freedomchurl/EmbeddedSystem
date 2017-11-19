@@ -72,6 +72,22 @@ public class CustomViewImage extends View {
         Bitmap chicken = BitmapFactory.decodeResource(getResources(),R.drawable.roast_chicken);
         chicken = Bitmap.createScaledBitmap(chicken, cacheCanvas.getWidth()/7, cacheCanvas.getHeight()/7,true);
 
+        mPaint.setColor(Color.LTGRAY);
+        //cacheCanvas.drawRect(0,0,480,800,mPaint);
+        mPaint.setStrokeWidth(cacheCanvas.getWidth()/7-cacheCanvas.getWidth()/8);
+
+
+
+        for (int j = 0; j < 8; j++) {
+            cacheCanvas.drawLine(cacheCanvas.getWidth() / 7 + (cacheCanvas.getWidth() / 7 * (j - 1)), 0,
+                    cacheCanvas.getWidth() / 7 + (cacheCanvas.getWidth() / 7 * (j - 1)), cacheCanvas.getHeight(), mPaint);
+        }
+        for (int j = 0; j < 8; j++) {
+            cacheCanvas.drawLine(0,cacheCanvas.getHeight()/7 +(cacheCanvas.getHeight()/7*(j-1)),
+                    cacheCanvas.getWidth(),cacheCanvas.getHeight()/7 +(cacheCanvas.getHeight()/7*(j-1)),mPaint);
+        }
+
+
 
         for(int i=0;i<7;i++) {
             for (int j = 0; j < 7; j++) {

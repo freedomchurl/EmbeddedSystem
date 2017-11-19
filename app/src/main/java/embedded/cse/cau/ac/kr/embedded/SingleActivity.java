@@ -1,16 +1,8 @@
 package embedded.cse.cau.ac.kr.embedded;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 
