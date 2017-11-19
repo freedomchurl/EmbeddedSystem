@@ -25,9 +25,9 @@ public class SingleActivity extends Activity {
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         mainLayout.setOrientation(LinearLayout.VERTICAL);
 
-        CustomViewImage img = new CustomViewImage(SingleActivity.this);
+       CustomViewImage img = new CustomViewImage(SingleActivity.this);
 
-        mainLayout.addView(img, params); // 리니어레이아웃에 포함시킴
+       mainLayout.addView(img, params); // 리니어레이아웃에 포함시킴
 
 
     }
