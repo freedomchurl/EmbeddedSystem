@@ -1,21 +1,10 @@
 package embedded.cse.cau.ac.kr.embedded;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -34,35 +23,15 @@ import java.util.ArrayList;
 // Ranking show View
 public class RankingActivity extends Activity {
 
-
-    RecyclerView singleRank = null;
-    RecyclerView.Adapter adapter;
-    RecyclerView.LayoutManager layoutManager;
-
-
     ArrayList<RankingData> myRank = new ArrayList<RankingData>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.ranking_activity);
-
-        singleRank = (RecyclerView) findViewById(R.id.recycle_single);
-
-        singleRank.setHasFixedSize(true);
-
-        layoutManager = new LinearLayoutManager(this);
-
-        singleRank.setLayoutManager(layoutManager);
-        adapter = new MyAdpater(myRank,getApplicationContext());
-
-        singleRank.setAdapter(adapter);
 
         GetRank getRank = new GetRank();
         getRank.execute();
-
-
 
     }
 
@@ -91,8 +60,6 @@ public class RankingActivity extends Activity {
                     myRank.add(new RankingData(score,name,i+1));
                 }
 
-                adapter.notifyDataSetChanged();
-
 
             }catch (Exception e){}
         }
@@ -103,7 +70,7 @@ public class RankingActivity extends Activity {
             try {
 
 
-                String url = "http://35.201.221.215/read_ranking.php";
+                String url = "http://35.201.149.34/read_ranking.php";
 
                 URL myUrl = new URL(url);
 
@@ -140,74 +107,5 @@ public class RankingActivity extends Activity {
         protected void onPreExecute() {
             super.onPreExecute();
         }
-    }
-
-
-    class MyAdpater extends RecyclerView.Adapter {
-        private Context context;
-        private ArrayList<RankingData> mItems;
-
-        // Allows to remember the last item shown on screen
-        private int lastPosition = -1;
-
-        public MyAdpater(ArrayList<RankingData> items, Context mContext) {
-            mItems = items;
-            context = mContext;
-        }
-
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cardview, parent, false);
-            ViewHolder holder = new ViewHolder(v);
-            return holder;
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            ((ViewHolder)holder).imageView.setImageResource(R.drawable.crown);
-            ((ViewHolder)holder).textView.setText(mItems.get(position).getName());
-            ((ViewHolder)holder).rankView.setText(String.valueOf(mItems.get(position).getRank()) + "등");
-            ((ViewHolder)holder).scoreView.setText(String.valueOf(mItems.get(position).getScore()) + "점");
-
-            setAnimation(((ViewHolder)holder).imageView, position);
-
-        }
-
-
-
-        @Override
-        public int getItemCount() {
-            return mItems.size();
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-
-            public ImageView imageView;
-            public TextView textView;
-            public TextView rankView;
-            public TextView scoreView;
-
-            public ViewHolder(View view) {
-                super(view);
-                imageView = (ImageView) view.findViewById(R.id.image);
-                textView = (TextView) view.findViewById(R.id.name);
-                rankView = (TextView) view.findViewById(R.id.rank);
-                scoreView = (TextView) view.findViewById(R.id.score);
-
-                // 이 부분에서, 드래그 삭제 기능을 넣어야한다.
-            }
-
-        }
-
-        private void setAnimation(View viewToAnimate, int position) {
-            // 새로 보여지는 뷰라면 애니메이션을 해줍니다
-            if (position > lastPosition) {
-                Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
-                viewToAnimate.startAnimation(animation);
-                lastPosition = position;
-            }
-        }
-
-
     }
 }
