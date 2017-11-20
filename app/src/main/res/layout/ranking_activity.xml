@@ -1,30 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+
+<relativelayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#73C3F1">
-    <!--We need to add Background Image-->
+    tools:context="embedded.cse.cau.ac.kr.embedded.RankingActivity">
 
-    <TextView
+
+    <android.support.v7.widget.recyclerview
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Ranking"
-        android:textColor="#ffffff"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:textSize="15dp"
-        android:background="#084B8A"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/recycler_view"
+        android:scrollbars="vertical">
 
-    <android.support.v7.app.AlertController.RecycleListView
-        android:id="@+id/recycle1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </android.support.v7.app.AlertController.RecycleListView>
+    </android.support.v7.widget.recyclerview>
 
 
 
 
-
-</LinearLayout>
+</relativelayout>
