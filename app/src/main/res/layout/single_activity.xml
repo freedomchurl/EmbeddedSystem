@@ -10,42 +10,110 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="4"
         android:orientation="horizontal">
 
 
-       <TextView
-           android:layout_width="0dp"
-           android:layout_weight="7"
-           android:text="이름들어가는곳"
-           android:gravity="center"
-           android:background="#73C3F1"
-           android:textColor="#ffffff"
-           android:textSize="10dp"
-           android:layout_height="match_parent" />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="10"
-            android:gravity="center"
-            android:background="#73C3F1"
-            android:textColor="#ffffff"
-            android:textSize="10dp"
-            android:text="점수들어가는곳"
 
-            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/mainColor2"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/round_layout">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="플레이어 이름"
+                    android:textSize="12dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="3dp"
+                    android:textColor="#0A0A2A"
+                    android:layout_weight="2"/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_weight="4"
+                    android:id="@+id/singleName"
+                    android:gravity="center"
+                    android:layout_height="0dp"
+                    android:textColor="#ffffff"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:text="LeeCheol"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/mainColor2">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/round_layout">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="점수"
+                    android:textSize="12dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="3dp"
+                    android:textColor="#0A0A2A"
+                    android:layout_weight="2"/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_weight="4"
+                    android:id="@+id/singleScore"
+                    android:gravity="center"
+                    android:layout_height="0dp"
+                    android:textColor="#ffffff"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:text="2000000점"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
 
           </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
-        android:paddingTop="10dp"
+        android:layout_weight="2.0"
+        android:paddingTop="5dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:paddingBottom="10dp"
-        android:background="#dbdbdb"
+        android:paddingBottom="6dp"
+        android:background="#73C3F1"
         android:orientation="horizontal">
+
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -132,14 +200,37 @@
             android:src="#880e4f"
             android:id="@+id/combo12"/>
 
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:layout_weight="18"
         android:id="@+id/mainLayout"
         android:orientation="horizontal">
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="2"
+        android:layout_height="0dp"
+        android:background="@color/mainColor2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="배고팡"
+            android:textColor="#ffffff"
+            android:paddingTop="5dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:paddingBottom="5dp"/>
 
 
     </LinearLayout>

@@ -3,4 +3,17 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="mainColor2">#084B8A</color>
+    <color name="combo1">#f8bbd0</color>
+    <color name="combo2">#f48fb1</color>
+    <color name="combo3">#ff87be</color>
+    <color name="combo4">#ff7dc8</color>
+    <color name="combo5">#ff73be</color>
+    <color name="combo6">#ff69b4</color>
+    <color name="combo7">#f06292</color>
+    <color name="combo8">#ec407a</color>
+    <color name="combo9">#e91e63</color>
+    <color name="combo10">#d81b60</color>
+    <color name="combo11">#ad1457</color>
+    <color name="combo12">#880e4f</color>
 </resources>

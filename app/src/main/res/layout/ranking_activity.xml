@@ -6,22 +6,97 @@
     android:background="#73C3F1">
     <!--We need to add Background Image-->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Ranking"
-        android:textColor="#ffffff"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:textSize="15dp"
-        android:background="#084B8A"/>
 
-    <android.support.v7.app.AlertController.RecycleListView
-        android:id="@+id/recycle1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-    </android.support.v7.app.AlertController.RecycleListView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/mainColor2"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/round_layout">
+
+
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_weight="4"
+                    android:id="@+id/singleRankingButton"
+                    android:gravity="center"
+                    android:background="#00ffffff"
+                    android:layout_height="0dp"
+                    android:textColor="#ffffff"
+                    android:textSize="12dp"
+                    android:text="Single Ranking"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/mainColor2"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/round_layout">
+
+
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_weight="4"
+                    android:background="#00ffffff"
+                    android:id="@+id/multiRankingButton"
+                    android:gravity="center"
+                    android:layout_height="0dp"
+                    android:textColor="#ffffff"
+                    android:textSize="12dp"
+                    android:text="Multi Ranking"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="11"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/recycle_single"
+            android:scrollbars="vertical"
+            android:layout_height="wrap_content">
+
+
+
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+
 
 
 

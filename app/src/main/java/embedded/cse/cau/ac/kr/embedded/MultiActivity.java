@@ -21,7 +21,7 @@ public class MultiActivity extends Activity {
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         mainLayout.setOrientation(LinearLayout.VERTICAL);
 
-        CustomViewImage img = new CustomViewImage(MultiActivity.this);
+        CustomViewImage img = new CustomViewImage(MultiActivity.this,this);
 
         mainLayout.addView(img, params); // 리니어레이아웃에 포함시킴
 
@@ -31,7 +31,7 @@ public class MultiActivity extends Activity {
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         mainLayout2.setOrientation(LinearLayout.VERTICAL);
 
-        CustomViewImage img2 = new CustomViewImage(MultiActivity.this);
+        CustomViewImage img2 = new CustomViewImage(MultiActivity.this,this);
 
         mainLayout2.addView(img2, params2);
     }
