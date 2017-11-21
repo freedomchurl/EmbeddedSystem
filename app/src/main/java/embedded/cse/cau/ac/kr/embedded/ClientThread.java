@@ -27,11 +27,13 @@ public class ClientThread extends Thread{
 
     boolean isLeader = false;
 
-    ClientThread(Activity runningActivity,String name, boolean isLeader) {
+    int roomnum = -1;
+
+    ClientThread(Activity runningActivity,String name, boolean isLeader,int roomnum) {
         this.parents = runningActivity;
         this.name = name;
         this.isLeader = isLeader;
-
+        this.roomnum = roomnum;
     }
 
 
@@ -55,11 +57,17 @@ public class ClientThread extends Thread{
 
                 String echo = dis.readUTF();
 
-                if (echo.equals("CONNECTED_SUCCESS")) {
+                if (echo.startsWith("ROOMNUM///")) {
+
+                    String [] splitData = echo.split("///");
+
+                    this.roomnum = Integer.valueOf(splitData[1]);
+                    // 그리고 roomnum이 들어가게 된다.
+
                     parents.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(parents, "게임방을 개설하였습니다", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(parents, roomnum + " 번 게임방을 개설하였습니다", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

@@ -14,6 +14,7 @@ public class MultiActivity extends Activity {
 
     public String myName;
     public boolean isLeader;
+    public int roomnum = -1;
 
     public int score = 0;
     public int combo = 0;
@@ -86,7 +87,7 @@ public class MultiActivity extends Activity {
 
         mainLayout2.addView(img2, params2);
 
-        ClientThread myClient = new ClientThread(this,myName,isLeader);
+        ClientThread myClient = new ClientThread(this,myName,isLeader,roomnum);
         myClient.start();
     }
 
