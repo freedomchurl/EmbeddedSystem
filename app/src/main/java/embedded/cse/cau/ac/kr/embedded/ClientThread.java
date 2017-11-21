@@ -1,6 +1,8 @@
 package embedded.cse.cau.ac.kr.embedded;
 
 import android.app.Activity;
+import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import java.io.DataInputStream;
@@ -29,11 +31,15 @@ public class ClientThread extends Thread{
 
     int roomnum = -1;
 
+    boolean Running = true;
+
     ClientThread(Activity runningActivity,String name, boolean isLeader,int roomnum) {
         this.parents = runningActivity;
         this.name = name;
         this.isLeader = isLeader;
         this.roomnum = roomnum;
+
+
     }
 
 
@@ -50,6 +56,8 @@ public class ClientThread extends Thread{
             //BufferedReader br = new BufferedReader(new InputStreamReader(in));
             dos = new DataOutputStream(out);
 
+
+
             if(isLeader==true) {
                 String message = "MAKEROOM///" + name; // 이름을 보낸다.
 
@@ -64,6 +72,7 @@ public class ClientThread extends Thread{
                     this.roomnum = Integer.valueOf(splitData[1]);
                     // 그리고 roomnum이 들어가게 된다.
 
+
                     parents.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -73,7 +82,18 @@ public class ClientThread extends Thread{
                 }
 
             }
+            else
+            {
+                // 방에 접속해야한다.
+            }
 
+            while(Running)
+            {
+
+                String input = dis.readUTF();
+
+                Log.d("Block",input);
+            }
 
             sock.close();
             dis.close();

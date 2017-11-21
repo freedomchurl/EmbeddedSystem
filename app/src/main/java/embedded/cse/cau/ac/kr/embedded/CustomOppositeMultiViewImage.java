@@ -145,7 +145,7 @@ public class CustomOppositeMultiViewImage extends View {
         arr = new int [7][7];
         for(int i=0;i<7;i++){
             for(int j=0;j<7;j++){
-                arr[i][j]= (int) ((Math.random()*100)%num+1); //6개냐 7개냐 여기서 바꿔줌
+                arr[i][j]= (int) (-1); //6개냐 7개냐 여기서 바꿔줌
                 checkArr[i][j] = false;
             }
         }

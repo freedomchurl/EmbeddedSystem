@@ -34,6 +34,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
@@ -112,7 +113,9 @@ public class LoginMultiActivity extends Activity {
 
     class GetRoom extends AsyncTask<Void,Void,String>
     {
+        int myport = 8686;
 
+        ServerSocket server = null;
         OutputStream out = null;
         InputStream in = null;
         Socket sock = null;
@@ -160,7 +163,7 @@ public class LoginMultiActivity extends Activity {
 
             try {
                 sock = new Socket("10.210.60.231", 7676);
-
+                // 이게 쓰기용
                 out = sock.getOutputStream();
                 in = sock.getInputStream();
 
@@ -252,6 +255,23 @@ public class LoginMultiActivity extends Activity {
                 numView = (TextView) view.findViewById(R.id.opposite_num);
 
 
+                view.setOnClickListener(new View.OnClickListener(){
+                    public void onClick(View v)
+                    {
+                        // 그 채팅방으로 들어가는 기능이 필요하다.
+                        Intent i = new Intent(LoginMultiActivity.this,MultiActivity.class);
+
+                        int pos = getPosition();
+                        i.putExtra("MYNAME",myName);
+                        i.putExtra("ISLEADER",false);
+                        i.putExtra("ROOMNUM",mItems.get(pos).getRoomID());
+                        Log.d("몇번째방이지?",String.valueOf(mItems.get(pos).getRoomID()));
+                        startActivity(i);
+                        finish();
+
+
+                    }
+                });
                 // 이 부분에서, 드래그 삭제 기능을 넣어야한다.
             }
 

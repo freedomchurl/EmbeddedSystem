@@ -3,6 +3,8 @@ package embedded.cse.cau.ac.kr.embedded;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -32,6 +34,8 @@ public class MultiActivity extends Activity {
     public ImageView combo11 = null;
     public ImageView combo12 = null;
 
+    public Button readyButton = null;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +43,12 @@ public class MultiActivity extends Activity {
 
         this.isLeader = getIntent().getBooleanExtra("ISLEADER",false);
         this.myName = getIntent().getStringExtra("MYNAME");
+
+        if(isLeader == false)
+        {
+            this.roomnum = getIntent().getIntExtra("ROOMNUM",-1);
+        }
+
 
         combo1 = (ImageView) findViewById(R.id.mcombo1);
         combo2 = (ImageView) findViewById(R.id.mcombo2);
@@ -66,18 +76,10 @@ public class MultiActivity extends Activity {
         combo11.setImageResource(android.R.color.transparent);
         combo12.setImageResource(android.R.color.transparent);
 
-
-        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.mutiLayout);//객체참조
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(       //객체생성
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        mainLayout.setOrientation(LinearLayout.VERTICAL);
-
-        CustomMultiViewImage img = new CustomMultiViewImage(MultiActivity.this,this);
-
-        mainLayout.addView(img, params); // 리니어레이아웃에 포함시킴
-
         LinearLayout mainLayout2 = (LinearLayout) findViewById(R.id.oppositeLayout);//객체참조
+
+        mainLayout2.removeAllViewsInLayout();
+
         LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(       //객체생성
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -87,8 +89,28 @@ public class MultiActivity extends Activity {
 
         mainLayout2.addView(img2, params2);
 
+
+
         ClientThread myClient = new ClientThread(this,myName,isLeader,roomnum);
         myClient.start();
+    }
+
+    public void StartGame()
+    {
+        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.mutiLayout);//객체참조
+
+        mainLayout.removeAllViewsInLayout();
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(       //객체생성
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        mainLayout.setOrientation(LinearLayout.VERTICAL);
+
+        CustomMultiViewImage img = new CustomMultiViewImage(MultiActivity.this,this);
+
+        mainLayout.addView(img, params); // 리니어레이아웃에 포함시킴
+
+
     }
 
 
