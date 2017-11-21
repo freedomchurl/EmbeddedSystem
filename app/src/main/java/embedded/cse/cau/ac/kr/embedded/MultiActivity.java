@@ -2,11 +2,13 @@ package embedded.cse.cau.ac.kr.embedded;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * Created by caucse on 2017-11-08.
@@ -36,6 +38,9 @@ public class MultiActivity extends Activity {
 
     public Button readyButton = null;
 
+    public TextView message = null;
+    public ImageView waitingIcon = null;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +54,8 @@ public class MultiActivity extends Activity {
             this.roomnum = getIntent().getIntExtra("ROOMNUM",-1);
         }
 
+        message = (TextView) findViewById(R.id.textMessage);
+        waitingIcon = (ImageView) findViewById(R.id.waitingIcon);
 
         combo1 = (ImageView) findViewById(R.id.mcombo1);
         combo2 = (ImageView) findViewById(R.id.mcombo2);

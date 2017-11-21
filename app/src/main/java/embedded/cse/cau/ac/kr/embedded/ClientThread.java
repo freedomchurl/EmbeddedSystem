@@ -96,7 +96,61 @@ public class ClientThread extends Thread{
 
                 String input = dis.readUTF();
 
-                Log.d("Block",input);
+                if(input.equals("LETSPLAY")); // 시작 신호를 받을 경우.
+                {
+                    parents.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((MultiActivity) parents).message.setText(String.valueOf(5));
+                        }
+                    });
+                    Thread.sleep(1000);
+
+                    parents.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((MultiActivity) parents).message.setText(String.valueOf(4));
+                        }
+                    });
+                    Thread.sleep(1000);
+
+                    parents.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((MultiActivity) parents).message.setText(String.valueOf(3));
+                        }
+                    });
+                    Thread.sleep(1000);
+
+                    parents.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((MultiActivity) parents).message.setText(String.valueOf(2));
+                        }
+                    });
+                    Thread.sleep(1000);
+
+                    parents.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((MultiActivity) parents).message.setText(String.valueOf(1));
+                        }
+                    });
+                    Thread.sleep(1000);
+
+                    parents.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((MultiActivity)parents).message.setText("Start");
+                            ((MultiActivity)parents).waitingIcon.setImageResource(R.drawable.play);
+                        }
+                    });
+                    Thread.sleep(1000);
+
+                    ((MultiActivity)parents).StartGame();
+
+
+                }
             }
 
             sock.close();
@@ -106,3 +160,4 @@ public class ClientThread extends Thread{
 
     }
 }
+
