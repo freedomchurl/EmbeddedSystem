@@ -64,7 +64,8 @@ public class IntroActivity extends Activity {
             public void onClick(View view) {
                 Log.d("Move","Go to Multi Page");
                 // Go to Ranking page
-                Intent intent = new Intent(IntroActivity.this,MultiActivity.class);
+                //Intent intent = new Intent(IntroActivity.this,MultiActivity.class);
+                Intent intent = new Intent(IntroActivity.this,LoginMultiActivity.class);
                 intent.putExtra("MYNAME",myName);
                 startActivity(intent);
             }

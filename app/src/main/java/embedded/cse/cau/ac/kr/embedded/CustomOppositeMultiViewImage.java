@@ -150,27 +150,27 @@ public class CustomOppositeMultiViewImage extends View {
             }
         }
 
-        burger = BitmapFactory.decodeResource(getResources(),R.drawable.burger);
+        burger = BitmapFactory.decodeResource(getResources(),R.drawable.a);
         //burger = Bitmap.createScaledBitmap(burger, 50, burger.getHeight()/(burger.getWidth()/50),true);
         burger = Bitmap.createScaledBitmap(burger, cacheCanvas.getWidth()/7, cacheCanvas.getHeight()/7,true);
 
 
-        champagne = BitmapFactory.decodeResource(getResources(),R.drawable.champagne);
+        champagne = BitmapFactory.decodeResource(getResources(),R.drawable.b);
         champagne = Bitmap.createScaledBitmap(champagne, cacheCanvas.getWidth()/7, cacheCanvas.getHeight()/7,true);
 
-        pizza = BitmapFactory.decodeResource(getResources(),R.drawable.pizza);
+        pizza = BitmapFactory.decodeResource(getResources(),R.drawable.c);
         pizza = Bitmap.createScaledBitmap(pizza, cacheCanvas.getWidth()/7, cacheCanvas.getHeight()/7,true);
 
-        cake = BitmapFactory.decodeResource(getResources(),R.drawable.birthday_cake);
+        cake = BitmapFactory.decodeResource(getResources(),R.drawable.d);
         cake = Bitmap.createScaledBitmap(cake, cacheCanvas.getWidth()/7, cacheCanvas.getHeight()/7,true);
 
-        spaghetti = BitmapFactory.decodeResource(getResources(),R.drawable.spaghetti);
+        spaghetti = BitmapFactory.decodeResource(getResources(),R.drawable.e);
         spaghetti = Bitmap.createScaledBitmap(spaghetti, cacheCanvas.getWidth()/7, cacheCanvas.getHeight()/7,true);
 
-        beer = BitmapFactory.decodeResource(getResources(),R.drawable.beer);
+        beer = BitmapFactory.decodeResource(getResources(),R.drawable.f);
         beer = Bitmap.createScaledBitmap(beer, cacheCanvas.getWidth()/7, cacheCanvas.getHeight()/7,true);
 
-        chicken = BitmapFactory.decodeResource(getResources(),R.drawable.roast_chicken);
+        chicken = BitmapFactory.decodeResource(getResources(),R.drawable.g);
         chicken = Bitmap.createScaledBitmap(chicken, cacheCanvas.getWidth()/7, cacheCanvas.getHeight()/7,true);
 
     }
