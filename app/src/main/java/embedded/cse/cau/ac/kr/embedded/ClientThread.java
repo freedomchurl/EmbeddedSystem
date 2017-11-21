@@ -147,7 +147,13 @@ public class ClientThread extends Thread{
                     });
                     Thread.sleep(1000);
 
-                    ((MultiActivity)parents).StartGame();
+                    parents.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((MultiActivity)parents).StartGame();
+                        }
+                    });
+
 
 
                 }
