@@ -6,14 +6,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-
-import java.util.logging.Handler;
 
 /**
  * Created by Inhee on 2017-11-18.
@@ -29,7 +25,7 @@ import java.util.logging.Handler;
  */
 
 
-public class CustomViewImage extends View {
+public class CustomOppositeMultiViewImage extends View {
 
     private Bitmap cacheBitmap;
     private Canvas cacheCanvas;
@@ -52,13 +48,13 @@ public class CustomViewImage extends View {
 
     public boolean[][] checkArr = null;
 
-    private SingleActivity singleActivityCt = null;
+    private MultiActivity singleActivityCt = null;
 
 
-    public CustomViewImage(Context context,Activity Single) {
+    public CustomOppositeMultiViewImage(Context context, Activity Single) {
         super(context);
 
-        this.singleActivityCt = (SingleActivity) Single;
+        this.singleActivityCt = (MultiActivity) Single;
         mPaint = new Paint();
 
         // Combo 부분 수정해야한다.
@@ -185,11 +181,11 @@ public class CustomViewImage extends View {
             canvas.drawBitmap(cacheBitmap,0,0,null);
             Log.d("CANVASE _REFREST","Ddd");
 
-            if(isFirst)
-            {
-                UpDateAll();
+           // if(isFirst)
+           // {
+               // UpDateAll();
 
-            }
+           // }
         }
     }
 
@@ -466,72 +462,5 @@ public class CustomViewImage extends View {
 
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event){
 
-        int x = (int) event.getX();
-        int y = (int) event.getY();
-
-        switch (event.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                int col = (int) x / widthSize;
-                int row = (int) y / heightSize;
-                Log.d("CANVAS2",row + " " + col + " " + "ACTION_DOWN");
-
-                if(isSelected == false) // 아직 아무것도 선택이 안되어있는 상태라면
-                {
-                    this.first_selectedCol = col;
-                    this.first_selectedRow = row;
-                    // 선택되는 것들을 저장한다.
-                    this.isSelected = true;
-                }
-                else if(isSelected == true) // 하나 눌린상태라면
-                {
-                    /*
-                    1. 상하좌우가 아닐경우 예외처리
-                     */
-                    this.second_selectedCol = col;
-                    this.second_selectedRow = row;
-                    int Val = (int)Math.abs(second_selectedCol-first_selectedCol) + (int) Math.abs(second_selectedRow-first_selectedRow);
-                    // 상하좌우라면, 2개의 좌표의 row의 차 + col의 차가 무조건 1이어야 한다.
-                    if(Val==1)
-                    {
-                        if(isFirst==true)
-                        {
-                            isFirst= false;
-                        }
-                        int temp = arr[this.first_selectedRow][this.first_selectedCol];
-
-                        arr[this.first_selectedRow][this.first_selectedCol] = arr[second_selectedRow][second_selectedCol];
-
-                        arr[second_selectedRow][second_selectedCol] = temp;
-
-                        if(CheckPang()) {
-                            UpDateAll();
-                        }
-                        else
-                        {
-                          temp = arr[second_selectedRow][second_selectedCol];
-                          arr[second_selectedRow][second_selectedCol] = arr[first_selectedRow][first_selectedCol];
-                          arr[first_selectedRow][first_selectedCol] = temp;
-                        }
-
-                    }
-
-                    this.isSelected = false;
-                    // 다시 초기화 한다.
-                }
-
-                break;
-            case MotionEvent.ACTION_MOVE:
-                Log.d("CANVAS",x + " " + y + " " + "ACTION_MOVE");
-                break;
-            case MotionEvent.ACTION_UP:
-                Log.d("CANVAS",x + " " + y + " " + "ACTION_UP");
-                this.postInvalidate();
-                break;
-        }
-
-        return true;
-    }
 }

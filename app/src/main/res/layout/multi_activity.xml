@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6"
+        android:layout_weight="5"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -59,6 +59,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
             android:orientation="horizontal"
             android:id="@+id/oppositeLayout">
 
@@ -90,93 +94,104 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingBottom="4dp"
-        android:background="#dbdbdb"
+        android:background="#73C3F1"
         android:orientation="horizontal">
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/border_imageview"
-            android:src="#f8bbd0"
-            android:id="@+id/combo1"/>
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/border_imageview"
-            android:src="#f48fb1"
-            android:id="@+id/combo2"/>
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/border_imageview"
-            android:src="#ff87be"
-            android:id="@+id/combo3"/>
 
         <ImageView
+            android:id="@+id/mcombo1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/border_imageview"
-            android:src="#ff7dc8"
-            android:id="@+id/combo4"/>
+            android:src="#f8bbd0" />
+
         <ImageView
+            android:id="@+id/mcombo2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/border_imageview"
-            android:src="#ff73be"
-            android:id="@+id/combo5"/>
+            android:src="#f48fb1" />
+
         <ImageView
+            android:id="@+id/mcombo3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/border_imageview"
-            android:src="#ff69b4"
-            android:id="@+id/combo6"/>
+            android:src="#ff87be" />
+
         <ImageView
+            android:id="@+id/mcombo4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/border_imageview"
-            android:src="#f06292"
-            android:id="@+id/combo7"/>
+            android:src="#ff7dc8" />
+
         <ImageView
+            android:id="@+id/mcombo5"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/border_imageview"
-            android:src="#ec407a"
-            android:id="@+id/combo8"/>
+            android:src="#ff73be" />
+
         <ImageView
+            android:id="@+id/mcombo6"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/border_imageview"
-            android:src="#e91e63"
-            android:id="@+id/combo9"/>
+            android:src="#ff69b4" />
+
         <ImageView
+            android:id="@+id/mcombo7"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/border_imageview"
-            android:src="#d81b60"
-            android:id="@+id/combo10"/>
+            android:src="#f06292" />
+
         <ImageView
+            android:id="@+id/mcombo8"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/border_imageview"
-            android:src="#ad1457"
-            android:id="@+id/combo11"/>
+            android:src="#ec407a" />
+
         <ImageView
+            android:id="@+id/mcombo9"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/border_imageview"
-            android:src="#880e4f"
-            android:id="@+id/combo12"/>
+            android:src="#e91e63" />
+
+        <ImageView
+            android:id="@+id/mcombo10"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/border_imageview"
+            android:src="#d81b60" />
+
+        <ImageView
+            android:id="@+id/mcombo11"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/border_imageview"
+            android:src="#ad1457" />
+
+        <ImageView
+            android:id="@+id/mcombo12"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/border_imageview"
+            android:src="#880e4f" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -184,8 +199,10 @@
         android:layout_weight="10"
         android:orientation="horizontal"
         android:paddingLeft="20dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
         android:paddingRight="20dp"
-        android:background="#dbdbdb"
+        android:background="#ffffff"
         android:id="@+id/mutiLayout">
 
 

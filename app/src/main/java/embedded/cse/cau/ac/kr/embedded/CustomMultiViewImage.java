@@ -6,14 +6,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-
-import java.util.logging.Handler;
 
 /**
  * Created by Inhee on 2017-11-18.
@@ -29,7 +25,7 @@ import java.util.logging.Handler;
  */
 
 
-public class CustomViewImage extends View {
+public class CustomMultiViewImage extends View {
 
     private Bitmap cacheBitmap;
     private Canvas cacheCanvas;
@@ -52,13 +48,13 @@ public class CustomViewImage extends View {
 
     public boolean[][] checkArr = null;
 
-    private SingleActivity singleActivityCt = null;
+    private MultiActivity singleActivityCt = null;
 
 
-    public CustomViewImage(Context context,Activity Single) {
+    public CustomMultiViewImage(Context context, Activity Single) {
         super(context);
 
-        this.singleActivityCt = (SingleActivity) Single;
+        this.singleActivityCt = (MultiActivity) Single;
         mPaint = new Paint();
 
         // Combo 부분 수정해야한다.
