@@ -25,9 +25,12 @@ public class ClientThread extends Thread{
 
     String name;
 
-    ClientThread(Activity runningActivity,String name) {
+    boolean isLeader = false;
+
+    ClientThread(Activity runningActivity,String name, boolean isLeader) {
         this.parents = runningActivity;
         this.name = name;
+        this.isLeader = isLeader;
 
     }
 
@@ -45,25 +48,23 @@ public class ClientThread extends Thread{
             //BufferedReader br = new BufferedReader(new InputStreamReader(in));
             dos = new DataOutputStream(out);
 
-            String message = "CONNECTED/" + name; // 이름을 보낸다.
+            if(isLeader==true) {
+                String message = "MAKEROOM///" + name; // 이름을 보낸다.
 
-            dos.writeUTF(message);
+                dos.writeUTF(message);
 
-            String echo = dis.readUTF();
+                String echo = dis.readUTF();
 
-            if(echo.equals("CONNECTED_SUCCESS")) {
-                parents.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(parents, "서버에 접속했습니다", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                if (echo.equals("CONNECTED_SUCCESS")) {
+                    parents.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(parents, "게임방을 개설하였습니다", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
             }
-
-
-            dos.writeUTF("REQUEST_ROOM"); // 방 정보를 요청한다.
-
-
 
 
             sock.close();

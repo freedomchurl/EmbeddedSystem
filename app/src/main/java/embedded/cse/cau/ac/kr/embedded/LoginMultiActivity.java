@@ -97,6 +97,10 @@ public class LoginMultiActivity extends Activity {
                 Intent i = new Intent(LoginMultiActivity.this,MultiActivity.class);
                 i.putExtra("MYNAME",myName);
 
+                // 여기다가 서버에 방을 만들어줘야하고, 여기서부터는 연결을 아예 해야한다.
+                i.putExtra("ISLEADER",true);
+                // 방을 만드는 사람
+
                 startActivity(i);
                 finish();
 

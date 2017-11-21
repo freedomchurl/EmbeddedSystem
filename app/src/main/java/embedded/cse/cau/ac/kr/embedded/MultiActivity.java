@@ -12,6 +12,9 @@ import android.widget.LinearLayout;
 
 public class MultiActivity extends Activity {
 
+    public String myName;
+    public boolean isLeader;
+
     public int score = 0;
     public int combo = 0;
 
@@ -32,6 +35,9 @@ public class MultiActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.multi_activity);
+
+        this.isLeader = getIntent().getBooleanExtra("ISLEADER",false);
+        this.myName = getIntent().getStringExtra("MYNAME");
 
         combo1 = (ImageView) findViewById(R.id.mcombo1);
         combo2 = (ImageView) findViewById(R.id.mcombo2);
@@ -79,6 +85,9 @@ public class MultiActivity extends Activity {
         CustomOppositeMultiViewImage img2 = new CustomOppositeMultiViewImage(MultiActivity.this,this);
 
         mainLayout2.addView(img2, params2);
+
+        ClientThread myClient = new ClientThread(this,myName,isLeader);
+        myClient.start();
     }
 
 
