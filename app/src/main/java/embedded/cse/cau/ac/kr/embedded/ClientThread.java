@@ -85,6 +85,10 @@ public class ClientThread extends Thread{
             else
             {
                 // 방에 접속해야한다.
+                String message = "JOINROOM///" + name + "///" + roomnum; // 이름을 보낸다.
+
+                dos.writeUTF(message);
+
             }
 
             while(Running)
