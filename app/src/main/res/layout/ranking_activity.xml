@@ -9,7 +9,86 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:background="@color/mainColor2"
+        android:layout_height="50dp">
+
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent"
+            android:text="HUNGRY RANKING"
+            android:paddingTop="7dp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:gravity="center"/>
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/mainColor2">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/a"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:padding="5dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/b"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/c"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:padding="5dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/d"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/e"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:padding="5dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/f"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
         android:orientation="horizontal"
         android:layout_weight="1">
 
@@ -35,8 +114,8 @@
                     android:gravity="center"
                     android:background="#00ffffff"
                     android:layout_height="0dp"
-                    android:textColor="#ffffff"
-                    android:textSize="12dp"
+                    android:textColor="@color/mainColor2"
+                    android:textSize="10dp"
                     android:text="Single Ranking"
                     />
 
@@ -64,8 +143,8 @@
                     android:id="@+id/multiRankingButton"
                     android:gravity="center"
                     android:layout_height="0dp"
-                    android:textColor="#ffffff"
-                    android:textSize="12dp"
+                    android:textColor="@color/mainColor2"
+                    android:textSize="10dp"
                     android:text="Multi Ranking"
                     />
 

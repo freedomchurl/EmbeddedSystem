@@ -510,6 +510,7 @@ public class CustomViewImage extends View {
                 }
                 else if(isSelected == true) // 하나 눌린상태라면
                 {
+                    this.isSelected = false;
                     /*
                     1. 상하좌우가 아닐경우 예외처리
                      */
@@ -541,7 +542,7 @@ public class CustomViewImage extends View {
 
                     }
 
-                    this.isSelected = false;
+
                     // 다시 초기화 한다.
                 }
 

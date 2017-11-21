@@ -226,7 +226,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="배고팡"
+            android:text="나는.. 배가 너무 고프다 - 이철"
             android:textColor="#ffffff"
             android:paddingTop="5dp"
             android:gravity="center_vertical|center_horizontal"

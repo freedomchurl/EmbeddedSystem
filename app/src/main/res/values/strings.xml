@@ -6,4 +6,5 @@
     <string name="clock_instruction">Clock Form Display</string>
     <string name="clock_form">Clock</string>
     <string name="normal_form">Normal</string>
+    <string name="ServerIP">10.210.60.231</string>
 </resources>

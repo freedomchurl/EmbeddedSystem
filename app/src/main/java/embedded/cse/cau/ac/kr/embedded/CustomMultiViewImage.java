@@ -486,6 +486,7 @@ public class CustomMultiViewImage extends View {
                     /*
                     1. 상하좌우가 아닐경우 예외처리
                      */
+                    this.isSelected = false;
                     this.second_selectedCol = col;
                     this.second_selectedRow = row;
                     int Val = (int)Math.abs(second_selectedCol-first_selectedCol) + (int) Math.abs(second_selectedRow-first_selectedRow);
@@ -514,7 +515,7 @@ public class CustomMultiViewImage extends View {
 
                     }
 
-                    this.isSelected = false;
+
                     // 다시 초기화 한다.
                 }
 
