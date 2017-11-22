@@ -284,7 +284,7 @@ public class MultiActivity extends Activity {
             String finalData = "GAMEDATA///" + String.valueOf(lefttime) + "///" + sendingData + "///" + score;
             Log.d("GAMEDATA!!!",finalData);
             try {
-                myClient.dos.writeUTF(finalData);
+                myClient.Write(finalData);
             }catch (Exception e){}
 
             mPaint.setColor(Color.LTGRAY);

@@ -33,7 +33,7 @@ public class ClientThread extends Thread{
     int roomnum = -1;
 
     boolean Running = true;
-
+    boolean isPlaying = false;
     ClientThread(Activity runningActivity,String name, boolean isLeader,int roomnum) {
         this.parents = runningActivity;
         this.name = name;
@@ -43,6 +43,12 @@ public class ClientThread extends Thread{
 
     }
 
+    public void Write(String input)
+    {
+        try {
+            this.dos.writeUTF(input);
+        }catch (Exception e){}
+    }
 
     public void run()
     {
@@ -95,81 +101,87 @@ public class ClientThread extends Thread{
             while(Running)
             {
 
-                String input = dis.readUTF();
+                if(isPlaying==false) {
+                    String input = dis.readUTF();
 
-                if(input.startsWith("LETSPLAY///")) // 시작 신호를 받을 경우.
-                {
-                    String [] splitData = input.split("///");
-                    oppoName = splitData[1];
-                    parents.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((MultiActivity) parents).oppName.setText(oppoName);
-                        }
-                    });
+                    if (input.startsWith("LETSPLAY///")) // 시작 신호를 받을 경우.
+                    {
+                        String[] splitData = input.split("///");
+                        oppoName = splitData[1];
+                        parents.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ((MultiActivity) parents).oppName.setText(oppoName);
+                            }
+                        });
 
 
-                    parents.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((MultiActivity) parents).message.setText(String.valueOf(5));
-                        }
-                    });
-                    Thread.sleep(1000);
+                        parents.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ((MultiActivity) parents).message.setText(String.valueOf(5));
+                            }
+                        });
+                        Thread.sleep(1000);
 
-                    parents.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((MultiActivity) parents).message.setText(String.valueOf(4));
-                        }
-                    });
-                    Thread.sleep(1000);
+                        parents.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ((MultiActivity) parents).message.setText(String.valueOf(4));
+                            }
+                        });
+                        Thread.sleep(1000);
 
-                    parents.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((MultiActivity) parents).message.setText(String.valueOf(3));
-                        }
-                    });
-                    Thread.sleep(1000);
+                        parents.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ((MultiActivity) parents).message.setText(String.valueOf(3));
+                            }
+                        });
+                        Thread.sleep(1000);
 
-                    parents.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((MultiActivity) parents).message.setText(String.valueOf(2));
-                        }
-                    });
-                    Thread.sleep(1000);
+                        parents.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ((MultiActivity) parents).message.setText(String.valueOf(2));
+                            }
+                        });
+                        Thread.sleep(1000);
 
-                    parents.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((MultiActivity) parents).message.setText(String.valueOf(1));
-                        }
-                    });
-                    Thread.sleep(1000);
+                        parents.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ((MultiActivity) parents).message.setText(String.valueOf(1));
+                            }
+                        });
+                        Thread.sleep(1000);
 
-                    parents.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((MultiActivity)parents).message.setText("Start");
-                            ((MultiActivity)parents).waitingIcon.setImageResource(R.drawable.play);
-                        }
-                    });
-                    Thread.sleep(1000);
+                        parents.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ((MultiActivity) parents).message.setText("Start");
+                                ((MultiActivity) parents).waitingIcon.setImageResource(R.drawable.play);
+                            }
+                        });
+                        Thread.sleep(1000);
 
-                    parents.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((MultiActivity)parents).StartGame();
-                        }
-                    });
+                        parents.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ((MultiActivity) parents).StartGame();
+                            }
+                        });
 
+                        isPlaying = true;
+
+                    }
                 }
+                else {
+                    String input = dis.readUTF();
 
-                if(input.startsWith("GAMEDATA///"))
-                {
-                    Log.d("게임데이터",input);
+                    if (input.startsWith("GAMEDATA///")) {
+                        Log.d("게임데이터", input);
+                    }
                 }
 
             }
