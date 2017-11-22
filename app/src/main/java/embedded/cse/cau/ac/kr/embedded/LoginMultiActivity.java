@@ -165,6 +165,9 @@ public class LoginMultiActivity extends Activity {
                 sock = new Socket("192.168.43.30", 7676);
                 // 이게 쓰기용
                 out = sock.getOutputStream();
+
+                //ServerSocket server = new ServerSocket(8686);
+
                 in = sock.getInputStream();
 
                 dis = new DataInputStream(in);
