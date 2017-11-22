@@ -26,6 +26,7 @@ public class ClientThread extends Thread{
     DataInputStream dis = null;
 
     String name;
+    String oppoName;
 
     boolean isLeader = false;
 
@@ -96,8 +97,18 @@ public class ClientThread extends Thread{
 
                 String input = dis.readUTF();
 
-                if(input.equals("LETSPLAY")); // 시작 신호를 받을 경우.
+                if(input.startsWith("LETSPLAY///")) // 시작 신호를 받을 경우.
                 {
+                    String [] splitData = input.split("///");
+                    oppoName = splitData[1];
+                    parents.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((MultiActivity) parents).oppName.setText(oppoName);
+                        }
+                    });
+
+
                     parents.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -154,9 +165,12 @@ public class ClientThread extends Thread{
                         }
                     });
 
-
-
                 }
+                else if(input.startsWith("GAMEDATA///"))
+                {
+                    Log.d("게임데이터",input);
+                }
+
             }
 
             sock.close();

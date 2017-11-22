@@ -35,15 +35,17 @@
                 android:background="#034DA2"
                 android:textColor="#ffffff"
                 android:textSize="10dp"/>
+
             <TextView
+                android:id="@+id/oppName"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="너이름들어가는곳"
-                android:gravity="center"
                 android:background="#ff6363"
+                android:gravity="center"
+                android:text="너이름들어가는곳"
                 android:textColor="#ffffff"
-                android:textSize="10dp"/>
+                android:textSize="10dp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
