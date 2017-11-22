@@ -165,7 +165,6 @@ public class MultiActivity extends Activity {
             this.isLeader = isLeader;
             this.roomnum = roomnum;
 
-
         }
 
         public void Write(String input)
@@ -228,7 +227,7 @@ public class MultiActivity extends Activity {
                         while(Running) {
                             try {
                                 input = dis.readUTF();
-
+                                Log.d("INPUT_DATA",input);
                                 if(isPlaying==false) {
 
 
@@ -306,6 +305,7 @@ public class MultiActivity extends Activity {
                                 }
                                 else
                                 {
+                                    Log.d("INPUT_DATA",input);
                                     if (input.startsWith("GAMEDATA///")) {
 
                                         // 데이터 형식은, GAMEDATA///남은시간///블록배열///점수
