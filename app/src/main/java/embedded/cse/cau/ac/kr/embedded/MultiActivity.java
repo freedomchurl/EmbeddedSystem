@@ -363,7 +363,16 @@ public class MultiActivity extends Activity {
 
     public void setOppositeMap(String input)
     {
+        String [] spMap = input.split("@");
 
+        for(int i=0;i<7;i++)
+        {
+            for(int j=0;j<7;j++)
+            {
+                img2.arr[i][j] = Integer.valueOf(spMap[i*7+j]);
+                img2.postInvalidate();
+            }
+        }
     }
 
 
