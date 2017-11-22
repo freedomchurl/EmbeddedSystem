@@ -45,7 +45,7 @@ import java.util.ArrayList;
 
 public class LoginMultiActivity extends Activity {
 
-    ClientThread myThread = null;
+
 
     private FloatingActionButton fab;
 
