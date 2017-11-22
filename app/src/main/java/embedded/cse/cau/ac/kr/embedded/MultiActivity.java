@@ -280,8 +280,9 @@ public class MultiActivity extends Activity {
 
                 }
             }
-            int lefttime = 0;
+            int lefttime = 1;
             String finalData = "GAMEDATA///" + String.valueOf(lefttime) + "///" + sendingData + "///" + score;
+            Log.d("GAMEDATA!!!",finalData);
             try {
                 myClient.dos.writeUTF(finalData);
             }catch (Exception e){}
