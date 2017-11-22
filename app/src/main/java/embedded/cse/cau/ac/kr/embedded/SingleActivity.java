@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -19,17 +18,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.Socket;
 import java.net.URL;
 
 
@@ -60,6 +52,23 @@ public class SingleActivity extends Activity {
     public ImageView combo12 = null;
 
     CustomViewImage img;
+    public native int SSegmentWrite(int data);
+    public native int SSegmentIOCtlHSeg(byte[] arr);
+
+    public native int TextlcdWrite(byte[] data);
+
+    public native int DotMatrixWrite(byte[] data);
+
+    public native int FullcolorledWrite(int data);
+
+    private TimerThread mTimerThread;
+    private DotThread mDotThread;
+    private FullcolorThread mFullcolorThread;
+
+    static {
+        System.loadLibrary("textlcd");
+
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -107,7 +116,46 @@ public class SingleActivity extends Activity {
 
         this.AddCombo(0);
 
-     }
+        String tmp = "s:" +myName;
+        TextlcdWrite(tmp.getBytes());
+
+
+        if (mTimerThread!=null){
+            if(mTimerThread.isAlive())
+            {
+                mTimerThread.setThreadShouldStop(true);
+                try{
+                    mTimerThread.join();
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+            mTimerThread = null;
+        }
+        mTimerThread = new TimerThread();
+        mTimerThread.start();
+
+
+
+
+
+        if (mDotThread!=null){
+            if(mDotThread.isAlive())
+            {
+                mDotThread.setThreadShouldStop(true);
+                try{
+                    mDotThread.join();
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+            mDotThread = null;
+        }
+
+
+        mDotThread = new DotThread();
+        mDotThread.start();
+    }
 
 
 
@@ -654,7 +702,9 @@ public class SingleActivity extends Activity {
         write.execute(myName,String.valueOf(score));
 
         Toast.makeText(this,"점수가 등록되었습니다!",Toast.LENGTH_SHORT).show();
-
+        mTimerThread.setThreadShouldStop(true);
+        mDotThread.setThreadShouldStop(true);
+        mFullcolorThread.setThreadShouldStop(true);
         super.onBackPressed();
     }
 
@@ -711,6 +761,21 @@ public class SingleActivity extends Activity {
             combo11.setImageResource(R.color.combo11);
         if(combo>=12)
             combo12.setImageResource(R.color.combo12);
+
+        if (mFullcolorThread!=null){
+            if(mFullcolorThread.isAlive())
+            {
+                mFullcolorThread.setThreadShouldStop(true);
+                try{
+                    mFullcolorThread.join();
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+            mFullcolorThread = null;
+        }
+        mFullcolorThread = new FullcolorThread();
+        mFullcolorThread.start();
     }
 
 
@@ -760,8 +825,67 @@ public class SingleActivity extends Activity {
             super.onPreExecute();
         }
     }
-}
 
+    class TimerThread extends Thread{
+        private boolean mShouldStop= false;
+
+
+        public void setThreadShouldStop(boolean shouldStop)
+        {
+            mShouldStop= shouldStop;
+        }
+
+        public void run()
+        {
+            setThreadShouldStop(false);
+            do{
+
+                SSegmentWrite(score);
+
+            }while (!mShouldStop);
+        }
+    }
+    class DotThread extends Thread{
+
+        private String stat = "SG";
+        private boolean mShouldStop= false;
+
+        public void setThreadShouldStop(boolean shouldStop)
+        {
+            mShouldStop= shouldStop;
+        }
+
+        public void run()
+        {
+            setThreadShouldStop(false);
+            do{
+
+
+                DotMatrixWrite(stat.getBytes());
+
+            }while (!mShouldStop);
+        }
+    }
+    class FullcolorThread extends Thread{
+
+        private boolean mShouldStop= false;
+        public void setThreadShouldStop(boolean shouldStop)
+        {
+            mShouldStop= shouldStop;
+        }
+
+        public void run()
+        {
+            setThreadShouldStop(false);
+            do{
+
+
+                FullcolorledWrite(combo%4);
+
+            }while (!mShouldStop);
+        }
+    }
+}
 
 
 

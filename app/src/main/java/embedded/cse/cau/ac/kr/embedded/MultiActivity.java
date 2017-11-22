@@ -8,7 +8,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -51,6 +50,23 @@ public class MultiActivity extends Activity {
     public ImageView combo11 = null;
     public ImageView combo12 = null;
 
+
+    public native int SSegmentWrite(int data);
+    public native int SSegmentIOCtlHSeg(byte[] arr);
+
+    public native int TextlcdWrite(byte[] data);
+
+    public native int DotMatrixWrite(byte[] data);
+
+    public native int FullcolorledWrite(int data);
+
+    private TimerThread mTimerThread2;
+    private DotThread mDotThread2;
+    private FullcolorThread mFullcolorThread2;
+    static {
+        System.loadLibrary("textlcd");
+
+    }
     public Button readyButton = null;
 
     public TextView message = null;
@@ -118,6 +134,45 @@ public class MultiActivity extends Activity {
 
         myClient = new ClientThread(this,myName,isLeader,roomnum);
         myClient.start();
+
+        String tmp = "M:" +myName;
+        TextlcdWrite(tmp.getBytes());
+        if (mTimerThread2!=null){
+            if(mTimerThread2.isAlive())
+            {
+                mTimerThread2.setThreadShouldStop(true);
+                try{
+                    mTimerThread2.join();
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+            mTimerThread2 = null;
+        }
+        mTimerThread2 = new TimerThread();
+        mTimerThread2.start();
+
+
+
+
+
+        if (mDotThread2!=null){
+            if(mDotThread2.isAlive())
+            {
+                mDotThread2.setThreadShouldStop(true);
+                try{
+                    mDotThread2.join();
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+            mDotThread2 = null;
+        }
+
+
+        mDotThread2 = new DotThread();
+        mDotThread2.start();
+
     }
 
     public void StartGame()
@@ -432,6 +487,20 @@ public class MultiActivity extends Activity {
             combo11.setImageResource(R.color.combo11);
         if(combo>=12)
             combo12.setImageResource(R.color.combo12);
+        if (mFullcolorThread2!=null){
+            if(mFullcolorThread2.isAlive())
+            {
+                mFullcolorThread2.setThreadShouldStop(true);
+                try{
+                    mFullcolorThread2.join();
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+            mFullcolorThread2 = null;
+        }
+        mFullcolorThread2 = new FullcolorThread();
+        mFullcolorThread2.start();
     }
 
     class CustomMultiViewImage extends View {
@@ -955,6 +1024,65 @@ public class MultiActivity extends Activity {
             }
 
             return true;
+        }
+    }
+    class TimerThread extends Thread{
+        private boolean mShouldStop= false;
+
+
+        public void setThreadShouldStop(boolean shouldStop)
+        {
+            mShouldStop= shouldStop;
+        }
+
+        public void run()
+        {
+            setThreadShouldStop(false);
+            do{
+
+                SSegmentWrite(score);
+
+            }while (!mShouldStop);
+        }
+    }
+    class DotThread extends Thread{
+
+        private String stat = "MT";
+        private boolean mShouldStop= false;
+
+        public void setThreadShouldStop(boolean shouldStop)
+        {
+            mShouldStop= shouldStop;
+        }
+
+        public void run()
+        {
+            setThreadShouldStop(false);
+            do{
+
+
+                DotMatrixWrite(stat.getBytes());
+
+            }while (!mShouldStop);
+        }
+    }
+    class FullcolorThread extends Thread{
+
+        private boolean mShouldStop= false;
+        public void setThreadShouldStop(boolean shouldStop)
+        {
+            mShouldStop= shouldStop;
+        }
+
+        public void run()
+        {
+            setThreadShouldStop(false);
+            do{
+
+
+                FullcolorledWrite(combo%4);
+
+            }while (!mShouldStop);
         }
     }
 }
