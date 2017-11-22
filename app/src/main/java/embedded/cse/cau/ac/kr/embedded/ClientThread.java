@@ -166,7 +166,8 @@ public class ClientThread extends Thread{
                     });
 
                 }
-                else if(input.startsWith("GAMEDATA///"))
+
+                if(input.startsWith("GAMEDATA///"))
                 {
                     Log.d("게임데이터",input);
                 }
