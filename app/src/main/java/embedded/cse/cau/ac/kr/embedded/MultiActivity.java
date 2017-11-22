@@ -147,9 +147,11 @@ public class MultiActivity extends Activity {
 
         DataOutputStream dos = null;
         DataInputStream dis = null;
-
+        String input = null;
         String name;
         String oppoName;
+        String writeData = "";
+        boolean isWriting = false;
 
         boolean isLeader = false;
 
@@ -168,11 +170,8 @@ public class MultiActivity extends Activity {
 
         public void Write(String input)
         {
-            Log.d("출력해보자",input);
-            try {
-                dos.writeUTF(input);
-                Log.d("왜 안될까?",input);
-            }catch (Exception e){}
+            this.isWriting = true;
+            this.writeData = input;
         }
 
         public void run()
@@ -302,6 +301,44 @@ public class MultiActivity extends Activity {
                         }
                     }
                     else {
+
+                        if(isWriting==true && !writeData.equals(""))
+                        {
+                            dos.writeUTF(writeData);
+                            isWriting = false;
+                            writeData = "";
+                            // isWriting true로 해주고 writeData값을 넣어줘야한다.
+                        }
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                while(Running) {
+                                    try {
+                                        input = dis.readUTF();
+                                        if (input.startsWith("GAMEDATA///")) {
+
+                                            // 데이터 형식은, GAMEDATA///남은시간///블록배열///점수
+
+                                            String[] splitData = input.split("///");
+
+                                            final String mapdata = splitData[2];
+                                            // 상대방 점수를 가져와야한다.
+                                            final String oppoScore = splitData[3];
+
+                                            parents.runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    ((MultiActivity) parents).setOppositeMap(mapdata);
+                                                    // 상대방 점수도 받아와야한다.
+                                                }
+                                            });
+                                        }
+                                    } catch (Exception e) {
+                                    }
+                                }
+                            }
+                        });
                         //String input = dis.readUTF();
                         //Write("adsdasda");
                         //if (input.startsWith("GAMEDATA///")) {
@@ -317,7 +354,18 @@ public class MultiActivity extends Activity {
             }catch (Exception e){}
 
         }
+
+        public void SetRunFail()
+        {
+            this.Running = false;
+        }
     }
+
+    public void setOppositeMap(String input)
+    {
+
+    }
+
 
     public void AddScore(int num)
     {
@@ -439,7 +487,7 @@ public class MultiActivity extends Activity {
             for(int i=0;i<7;i++) {
                 for (int j = 0; j < 7; j++) {
 
-                    sendingData = sendingData + String.valueOf(arr[i][j]);
+                    sendingData = sendingData + String.valueOf(arr[i][j]) + "@";
 
                     switch (arr[i][j]){
                         case 1:
