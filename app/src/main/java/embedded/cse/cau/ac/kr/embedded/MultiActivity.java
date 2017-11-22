@@ -221,135 +221,130 @@ public class MultiActivity extends Activity {
 
                 }
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        while(Running) {
-                            try {
-                                input = dis.readUTF();
-                                Log.d("INPUT_DATA",input);
-                                if(isPlaying==false) {
 
 
-                                    if (input.startsWith("LETSPLAY///")) // 시작 신호를 받을 경우.
-                                    {
-                                        String[] splitData = input.split("///");
-                                        oppoName = splitData[1];
-                                        parents.runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                ((MultiActivity) parents).oppName.setText(oppoName);
-                                            }
-                                        });
+                    try {
+                        input = dis.readUTF();
+                        Log.d("INPUT_DATA",input);
+                        if(isPlaying==false) {
 
 
-                                        parents.runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                ((MultiActivity) parents).message.setText(String.valueOf(5));
-                                            }
-                                        });
-                                        Thread.sleep(1000);
-
-                                        parents.runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                ((MultiActivity) parents).message.setText(String.valueOf(4));
-                                            }
-                                        });
-                                        Thread.sleep(1000);
-
-                                        parents.runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                ((MultiActivity) parents).message.setText(String.valueOf(3));
-                                            }
-                                        });
-                                        Thread.sleep(1000);
-
-                                        parents.runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                ((MultiActivity) parents).message.setText(String.valueOf(2));
-                                            }
-                                        });
-                                        Thread.sleep(1000);
-
-                                        parents.runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                ((MultiActivity) parents).message.setText(String.valueOf(1));
-                                            }
-                                        });
-                                        Thread.sleep(1000);
-
-                                        parents.runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                ((MultiActivity) parents).message.setText("Start");
-                                                ((MultiActivity) parents).waitingIcon.setImageResource(R.drawable.play);
-                                            }
-                                        });
-                                        Thread.sleep(1000);
-
-                                        parents.runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                ((MultiActivity) parents).StartGame();
-                                            }
-                                        });
-
-                                        isPlaying = true;
-
+                            if (input.startsWith("LETSPLAY///")) // 시작 신호를 받을 경우.
+                            {
+                                String[] splitData = input.split("///");
+                                oppoName = splitData[1];
+                                parents.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ((MultiActivity) parents).oppName.setText(oppoName);
                                     }
-                                }
-                                else
-                                {
-                                    Log.d("INPUT_DATA",input);
-                                    if (input.startsWith("GAMEDATA///")) {
+                                });
 
-                                        // 데이터 형식은, GAMEDATA///남은시간///블록배열///점수
 
-                                        String[] splitData = input.split("///");
-
-                                        final String mapdata = splitData[2];
-                                        // 상대방 점수를 가져와야한다.
-                                        final String oppoScore = splitData[3];
-
-                                        parents.runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                ((MultiActivity) parents).setOppositeMap(mapdata);
-                                                // 상대방 점수도 받아와야한다.
-                                            }
-                                        });
+                                parents.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ((MultiActivity) parents).message.setText(String.valueOf(5));
                                     }
-                                }
-                            } catch (Exception e) {
+                                });
+                                Thread.sleep(1000);
+
+                                parents.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ((MultiActivity) parents).message.setText(String.valueOf(4));
+                                    }
+                                });
+                                Thread.sleep(1000);
+
+                                parents.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ((MultiActivity) parents).message.setText(String.valueOf(3));
+                                    }
+                                });
+                                Thread.sleep(1000);
+
+                                parents.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ((MultiActivity) parents).message.setText(String.valueOf(2));
+                                    }
+                                });
+                                Thread.sleep(1000);
+
+                                parents.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ((MultiActivity) parents).message.setText(String.valueOf(1));
+                                    }
+                                });
+                                Thread.sleep(1000);
+
+                                parents.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ((MultiActivity) parents).message.setText("Start");
+                                        ((MultiActivity) parents).waitingIcon.setImageResource(R.drawable.play);
+                                    }
+                                });
+                                Thread.sleep(1000);
+
+                                parents.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ((MultiActivity) parents).StartGame();
+                                    }
+                                });
+
+                                isPlaying = true;
+
                             }
                         }
-                    }
-                }).start();
-
-
-                while(Running)
-                {
-
-                        if(isWriting==true && !writeData.equals(""))
+                        while(Running)
                         {
-                            Log.d("쓰기도전","쓰자쓰자");
-                            dos.writeUTF(writeData);
-                            isWriting = false;
-                            writeData = "";
-                            Log.d("과연","과연");
-                            // isWriting true로 해주고 writeData값을 넣어줘야한다.
+                            String sending = "";
+                            for(int i=0;i<7;i++)
+                            {
+                                for(int j=0;j<7;j++)
+                                {
+                                    sending = sending + img.arr[i][j] + "@";
+                                }
+                            }
+
+                            String aa = "GAMEDATA///";
+                            aa = aa + "20///" + sending + "20";
+                            dos.writeUTF(aa);
+
+                            input = dis.readUTF();
+                            Log.d("INPUT_DATA",input);
+                            if (input.startsWith("GAMEDATA///")) {
+
+                                // 데이터 형식은, GAMEDATA///남은시간///블록배열///점수
+
+                                String[] splitData = input.split("///");
+
+                                final String mapdata = splitData[2];
+                                // 상대방 점수를 가져와야한다.
+                                final String oppoScore = splitData[3];
+
+                                parents.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ((MultiActivity) parents).setOppositeMap(mapdata);
+                                        // 상대방 점수도 받아와야한다.
+                                    }
+                                });
+                            }
+
+
+
                         }
-                        //String input = dis.readUTF();
-                        //Write("adsdasda");
-                        //if (input.startsWith("GAMEDATA///")) {
-                        //    Log.d("게임데이터", input);
-                       // }
-                }
+
+                    } catch (Exception e) {
+                    }
+
+
 
                 sock.close();
                 dis.close();
@@ -437,7 +432,7 @@ public class MultiActivity extends Activity {
     class CustomMultiViewImage extends View {
 
         String sendingData = "";
-
+        String finalData = "";
         private Bitmap cacheBitmap;
         private Canvas cacheCanvas;
         private Paint mPaint;
@@ -539,8 +534,9 @@ public class MultiActivity extends Activity {
 
 
             }
-
-            SendData();
+            int lefttime = 20;
+            finalData = "GAMEDATA///" + String.valueOf(lefttime) + "///" + sendingData + "///" + score;
+            //SendData();
             mPaint.setColor(Color.LTGRAY);
             //cacheCanvas.drawRect(0,0,480,800,mPaint);
             mPaint.setStrokeWidth(cacheCanvas.getWidth()/8-cacheCanvas.getWidth()/9);
