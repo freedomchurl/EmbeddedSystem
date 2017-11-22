@@ -179,7 +179,7 @@ public class MultiActivity extends Activity {
         {
             try{
 
-                sock = new Socket("165.194.17.15", 7676);
+                sock = new Socket("10.210.60.231", 7676);
 
                 out = sock.getOutputStream();
                 in = sock.getInputStream();
@@ -302,8 +302,8 @@ public class MultiActivity extends Activity {
                         }
                     }
                     else {
-                        String input = dis.readUTF();
-                        Write("adsdasda");
+                        //String input = dis.readUTF();
+                        //Write("adsdasda");
                         //if (input.startsWith("GAMEDATA///")) {
                         //    Log.d("게임데이터", input);
                        // }
