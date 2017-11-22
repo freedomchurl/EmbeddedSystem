@@ -337,9 +337,11 @@ public class MultiActivity extends Activity {
 
                         if(isWriting==true && !writeData.equals(""))
                         {
+                            Log.d("쓰기도전","쓰자쓰자");
                             dos.writeUTF(writeData);
                             isWriting = false;
                             writeData = "";
+                            Log.d("과연","과연");
                             // isWriting true로 해주고 writeData값을 넣어줘야한다.
                         }
                         //String input = dis.readUTF();
