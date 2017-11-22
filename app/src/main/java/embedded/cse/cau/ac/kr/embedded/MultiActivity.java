@@ -170,7 +170,7 @@ public class MultiActivity extends Activity {
         {
             Log.d("출력해보자",input);
             try {
-                this.dos.writeUTF(input);
+                dos.writeUTF(input);
                 Log.d("왜 안될까?",input);
             }catch (Exception e){}
         }
@@ -179,7 +179,7 @@ public class MultiActivity extends Activity {
         {
             try{
 
-                sock = new Socket("10.210.60.231", 7676);
+                sock = new Socket("165.194.17.15", 7676);
 
                 out = sock.getOutputStream();
                 in = sock.getInputStream();
@@ -303,10 +303,10 @@ public class MultiActivity extends Activity {
                     }
                     else {
                         String input = dis.readUTF();
-
-                        if (input.startsWith("GAMEDATA///")) {
-                            Log.d("게임데이터", input);
-                        }
+                        Write("adsdasda");
+                        //if (input.startsWith("GAMEDATA///")) {
+                        //    Log.d("게임데이터", input);
+                       // }
                     }
 
                 }
