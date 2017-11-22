@@ -45,8 +45,10 @@ public class ClientThread extends Thread{
 
     public void Write(String input)
     {
+        Log.d("출력해보자",input);
         try {
             this.dos.writeUTF(input);
+            Log.d("왜 안될까?",input);
         }catch (Exception e){}
     }
 

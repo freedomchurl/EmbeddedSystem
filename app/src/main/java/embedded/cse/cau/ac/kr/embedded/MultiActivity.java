@@ -236,6 +236,15 @@ public class MultiActivity extends Activity {
             cacheCanvas.setBitmap(cacheBitmap);
         }
 
+        public void SendData()
+        {
+            int lefttime = 1;
+            String finalData = "GAMEDATA///" + String.valueOf(lefttime) + "///" + sendingData + "///" + score;
+            Log.d("GAMEDATA!!!",finalData);
+            try {
+                myClient.Write(finalData);
+            }catch (Exception e){}
+        }
         private void UpdateDraw()
         {
             cacheCanvas.drawColor(Color.WHITE);
@@ -279,14 +288,11 @@ public class MultiActivity extends Activity {
                     }
 
                 }
-            }
-            int lefttime = 1;
-            String finalData = "GAMEDATA///" + String.valueOf(lefttime) + "///" + sendingData + "///" + score;
-            Log.d("GAMEDATA!!!",finalData);
-            try {
-                myClient.Write(finalData);
-            }catch (Exception e){}
 
+
+            }
+
+            SendData();
             mPaint.setColor(Color.LTGRAY);
             //cacheCanvas.drawRect(0,0,480,800,mPaint);
             mPaint.setStrokeWidth(cacheCanvas.getWidth()/8-cacheCanvas.getWidth()/9);
