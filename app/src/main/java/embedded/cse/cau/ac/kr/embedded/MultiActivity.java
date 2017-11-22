@@ -338,7 +338,7 @@ public class MultiActivity extends Activity {
                                     }
                                 }
                             }
-                        });
+                        }).start();
                         //String input = dis.readUTF();
                         //Write("adsdasda");
                         //if (input.startsWith("GAMEDATA///")) {
