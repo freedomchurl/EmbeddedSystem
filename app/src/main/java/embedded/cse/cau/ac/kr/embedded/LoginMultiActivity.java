@@ -162,7 +162,7 @@ public class LoginMultiActivity extends Activity {
             String result = null;
 
             try {
-                sock = new Socket("10.210.60.231", 7676);
+                sock = new Socket("192.168.43.30", 7676);
                 // 이게 쓰기용
                 out = sock.getOutputStream();
                 in = sock.getInputStream();

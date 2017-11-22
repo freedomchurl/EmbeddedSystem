@@ -177,7 +177,7 @@ public class MultiActivity extends Activity {
         {
             try{
 
-                sock = new Socket("10.210.60.231", 7676);
+                sock = new Socket("192.168.43.30", 7676);
 
                 out = sock.getOutputStream();
                 in = sock.getInputStream();
@@ -490,6 +490,7 @@ public class MultiActivity extends Activity {
             Log.d("GAMEDATA!!!",finalData);
             try {
                 myClient.Write(finalData);
+                Log.d("adasd","CHEOL_FUCK");
             }catch (Exception e){}
         }
         private void UpdateDraw()
